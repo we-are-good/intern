@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import type { UserTestType } from "../types/UserTypes";
+import type { UserTestType } from "../types/userTypes";
 import { useUserQuery } from "../query/useQueries/useUserQueries";
 
 const Home = () => {

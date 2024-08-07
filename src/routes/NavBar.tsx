@@ -3,7 +3,7 @@ import {
   NavBarWrapper,
   MenuWrapper,
   ContentsWrapper,
-} from "../styles/NavBarStyles";
+} from "../styles/navBarStyles";
 
 const NavBar = () => {
   const navigate = useNavigate();

@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { USER } from "../queryKeys/userQueryKeys";
+import { TESTUSER } from "../queryKeys/userQueryKeys";
 import { fetchUserInformation } from "../queryFunctions/userQueryFns";
-import { UserTestType } from "../../types/UserTypes";
+import { UserTestType } from "../../types/userTypes";
 
 export const useUserQuery = (): UserTestType | undefined => {
   const { data, error, isSuccess } = useQuery({
-    queryKey: [USER],
+    queryKey: [TESTUSER],
     queryFn: fetchUserInformation,
   });
   if (error) {

@@ -9,7 +9,7 @@ import Home from "./routes/Home";
 import Mypage from "./routes/Mypage";
 import NavBar from "./routes/NavBar";
 import ProtectedRouter from "./routes/ProtectedRouter";
-import GlobalStyle from "./styles/GlobalStyles";
+import GlobalStyle from "./styles/globalStyles";
 import Login from "./routes/Login";
 import Joinin from "./routes/Joinin";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
