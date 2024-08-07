@@ -4,16 +4,19 @@ import {
   MenuWrapper,
   ContentsWrapper,
 } from "../styles/navBarStyles";
+import { useAuthStore } from "../store/userInfoStore";
 
 const NavBar = () => {
   const navigate = useNavigate();
+  const { userLogout, user } = useAuthStore();
   const logOutHandler = () => {
     const logOutConfirmation = confirm("정말 로그아웃 하시겠습니까?");
     if (logOutConfirmation) {
-      //유저 로그아웃 로직
+      userLogout();
       navigate("/login");
     }
   };
+  console.log(user);
   return (
     <NavBarWrapper>
       <MenuWrapper>

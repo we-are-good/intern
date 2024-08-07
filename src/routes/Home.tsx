@@ -11,7 +11,6 @@ const Home = () => {
   useEffect(() => {
     setConnection(data);
   }, []);
-  console.log(data);
   return <div>{connection?.id}</div>;
 };
 

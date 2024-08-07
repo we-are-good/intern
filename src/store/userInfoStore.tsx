@@ -1,11 +1,14 @@
 import { create } from "zustand";
+import { UserType } from "../types/userTypes";
 
-interface BearState {
-  bears: number;
-  increase: (by: number) => void;
+interface Auth {
+  user: UserType | null;
+  userLogin: (by: UserType) => void;
+  userLogout: () => void;
 }
 
-const useBearStore = create<BearState>()((set) => ({
-  bears: 0,
-  increase: (by) => set((state) => ({ bears: state.bears + by })),
+export const useAuthStore = create<Auth>()((set) => ({
+  user: null,
+  userLogin: (by) => set(() => ({ user: by })),
+  userLogout: () => set(() => ({ user: null })),
 }));

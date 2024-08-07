@@ -22,7 +22,12 @@ const api = axios.create({
 
 export const loginUser = async (user: LoginUserType) => {
   try {
-    await axios.post(`${api}/login`, user, { withCredentials: true });
+    const response = await axios.post(`api/login`, user, {
+      withCredentials: true,
+    });
+    const data = response.data;
+    console.log(data);
+    return data;
   } catch (error) {
     const errorMessage: string = error.response.data.message;
     alert(errorMessage);

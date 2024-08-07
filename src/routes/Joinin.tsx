@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { UserInputWrapper, UserInputs } from "../styles/joinAndLoginStyles";
 import { addUser } from "../query/queryFunctions/userQueryFns";
+import { Link } from "react-router-dom";
 
 const Joinin = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -55,6 +56,7 @@ const Joinin = () => {
           />
           <button type="submit">{isLoading ? "진행중.." : "확인"}</button>
         </UserInputs>
+        <Link to={"/login"}>Log in으로 가기</Link>
       </UserInputWrapper>
     </>
   );
