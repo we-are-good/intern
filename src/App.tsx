@@ -12,8 +12,17 @@ import ProtectedRouter from "./routes/ProtectedRouter";
 import GlobalStyle from "./styles/GlobalStyles";
 import Login from "./routes/Login";
 import Joinin from "./routes/Joinin";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 function App() {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 1000 * 60,
+      },
+    },
+  });
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
@@ -31,8 +40,11 @@ function App() {
   );
   return (
     <>
-      <RouterProvider router={router} />
-      <GlobalStyle />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+        <GlobalStyle />
+        <ReactQueryDevtools initialIsOpen={true} />
+      </QueryClientProvider>
     </>
   );
 }

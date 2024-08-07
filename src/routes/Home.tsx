@@ -1,5 +1,18 @@
+import { useEffect, useState } from "react";
+
+import type { UserTestType } from "../types/UserTypes";
+import { useUserQuery } from "../query/useQueries/useUserQueries";
+
 const Home = () => {
-  return <div>이것이 홈이다</div>;
+  const [connection, setConnection] = useState<UserTestType | undefined>(
+    undefined
+  );
+  const data = useUserQuery();
+  useEffect(() => {
+    setConnection(data);
+  }, []);
+  console.log(data);
+  return <div>{connection?.id}</div>;
 };
 
 export default Home;
