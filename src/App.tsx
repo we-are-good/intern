@@ -14,12 +14,13 @@ import Login from "./routes/Login";
 import Joinin from "./routes/Joinin";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { CookiesProvider } from "react-cookie";
 
 function App() {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
-        staleTime: 1000 * 60,
+        staleTime: 1000 * 30,
       },
     },
   });
@@ -42,8 +43,10 @@ function App() {
     <>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
-        <GlobalStyle />
-        <ReactQueryDevtools initialIsOpen={true} />
+        <CookiesProvider>
+          <GlobalStyle />
+          <ReactQueryDevtools initialIsOpen={true} />
+        </CookiesProvider>
       </QueryClientProvider>
     </>
   );

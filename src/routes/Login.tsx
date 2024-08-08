@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { UserInputWrapper, UserInputs } from "../styles/joinAndLoginStyles";
-import { loginUser } from "../query/queryFunctions/userQueryFns";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuthStore } from "../store/userInfoStore";
+import { loginUser } from "../query/queryFunctions/userQueryFns";
+import { UserInputWrapper, UserInputs } from "../styles/joinAndLoginStyles";
+import { setCookie } from "../utils/Cookies";
 
 const Login = () => {
-  const { userLogin, user } = useAuthStore();
   const navigation = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [id, setId] = useState<string>("");
@@ -23,7 +22,9 @@ const Login = () => {
         password,
       };
       const data = await loginUser(nowUser);
-      userLogin(data);
+      if (data && data.accessToken) {
+        setCookie("accessToken", data.accessToken);
+      }
       navigation("/");
     } catch {
       console.error(Error);
@@ -33,30 +34,26 @@ const Login = () => {
       setPassword("");
     }
   };
-  console.log(user);
-
   return (
-    <>
-      <UserInputWrapper>
-        <p>Log in</p>
-        <UserInputs onSubmit={(e) => loginHandeler(e)}>
-          <input
-            type="text"
-            placeholder="아이디"
-            value={id}
-            onChange={(e) => setId(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="비밀번호"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button type="submit">{isLoading ? "진행중.." : "확인"}</button>
-        </UserInputs>
-        <Link to={"/joinin"}>Join in으로 가기</Link>
-      </UserInputWrapper>
-    </>
+    <UserInputWrapper>
+      <p>Log in</p>
+      <UserInputs onSubmit={(e) => loginHandeler(e)}>
+        <input
+          type="text"
+          placeholder="아이디"
+          value={id}
+          onChange={(e) => setId(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="비밀번호"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit">{isLoading ? "진행중.." : "확인"}</button>
+      </UserInputs>
+      <Link to={"/joinin"}>Join in으로 가기</Link>
+    </UserInputWrapper>
   );
 };
 

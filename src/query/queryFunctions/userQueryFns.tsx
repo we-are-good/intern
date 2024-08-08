@@ -1,16 +1,12 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 import type {
   LoginUserType,
   NewUserType,
-  UserTestType,
+  UserType,
 } from "../../types/userTypes";
-
-export const fetchUserInformation = async (): Promise<UserTestType> => {
-  const response = await fetch("https://jsonplaceholder.typicode.com/todos/1");
-  const data: UserTestType = await response.json();
-  return data;
-};
+import { deleteCookie, getCookie } from "../../utils/Cookies";
+import { ProfileType } from "../../types/profileTypes";
 
 const api = axios.create({
   baseURL: "https://moneyfulpublicpolicy.co.kr",
@@ -20,17 +16,20 @@ const api = axios.create({
   },
 });
 
-export const loginUser = async (user: LoginUserType) => {
+export const loginUser = async (
+  user: LoginUserType
+): Promise<UserType | undefined> => {
   try {
-    const response = await axios.post(`api/login`, user, {
+    const response = await axios.post(`/api/login`, user, {
       withCredentials: true,
     });
     const data = response.data;
-    console.log(data);
     return data;
   } catch (error) {
-    const errorMessage: string = error.response.data.message;
-    alert(errorMessage);
+    if (error instanceof AxiosError) {
+      const errorMessage: string = error.response?.data.message;
+      console.error(errorMessage);
+    }
   }
 };
 
@@ -41,8 +40,58 @@ export const addUser = async (newUser: NewUserType) => {
     });
     alert("회원가입 완료");
   } catch (error) {
-    const errorMessage: string = error.response.data.message;
-    alert(errorMessage);
+    if (error instanceof AxiosError) {
+      const errorMessage: string = error.response?.data.message;
+      console.error(errorMessage);
+    }
+  }
+};
+
+export const fetchUser = async (
+  accessToken: string
+): Promise<UserType | undefined> => {
+  try {
+    const data = await axios.get(`/api/user`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `bearer ${accessToken}`,
+      },
+    });
+    return data.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      const errorMessage: string = error.response?.data.message;
+      alert(`유저확인오류 ${errorMessage}`);
+    }
+    deleteCookie("accessToken");
+  }
+};
+
+export const updateUser = async ({
+  newFile,
+  newNickname,
+}: ProfileType): Promise<UserType | undefined> => {
+  try {
+    const accessToken: string = getCookie("accessToken");
+    const data = await axios.patch(
+      `/api/profile`,
+      {
+        avatar: newFile,
+        nickname: newNickname,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `bearer ${accessToken}`,
+        },
+      }
+    );
+    return data.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      const errorMessage: string = error.response?.data.message;
+      console.error(errorMessage);
+    }
   }
 };
 

@@ -12,7 +12,7 @@ export type NewUserType = {
 };
 
 export type UserType = {
-  accessToken: string;
+  accessToken?: string;
   userId: string;
   success: boolean;
   avatar: string;
