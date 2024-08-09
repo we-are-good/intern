@@ -9,6 +9,10 @@
     }
   ],
   "compilerOptions": {
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "types": ["@testing-library/jest-dom"]
   }
+  // "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "./jest.setup.js"],
+  // "exclude": ["node_modules"]
 }

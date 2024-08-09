@@ -43,20 +43,20 @@ const Login = () => {
       <p>Log in</p>
       <UserInputs onSubmit={(e) => loginHandeler(e)}>
         <input
-          id="userId"
+          data-testid="userId"
           type="text"
           placeholder="아이디"
           value={id}
           onChange={(e) => setId(e.target.value)}
         />
         <input
-          id="userPassword"
+          data-testid="userPassword"
           type="text"
           placeholder="비밀번호"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button id="loginButton" type="submit">
+        <button data-testid="loginButton" type="submit">
           {isLoading ? "진행중.." : "확인"}
         </button>
       </UserInputs>

@@ -15,6 +15,7 @@ import Joinin from "./routes/Joinin";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { CookiesProvider } from "react-cookie";
+import { ErrorBoundary } from "@sentry/react";
 
 function App() {
   const queryClient = new QueryClient({
@@ -24,6 +25,7 @@ function App() {
       },
     },
   });
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
@@ -44,8 +46,10 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
         <CookiesProvider>
-          <GlobalStyle />
-          <ReactQueryDevtools initialIsOpen={true} />
+          <ErrorBoundary fallback={<p>something went wrong</p>}>
+            <GlobalStyle />
+            <ReactQueryDevtools initialIsOpen={true} />
+          </ErrorBoundary>
         </CookiesProvider>
       </QueryClientProvider>
     </>
