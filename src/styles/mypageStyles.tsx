@@ -20,3 +20,24 @@ export const ProfileChangeButton = styled.button`
   border-radius: 10px;
   cursor: pointer;
 `;
+
+export const AvatarImg = styled.label`
+  width: 200px;
+  overflow: hidden;
+  height: 200px;
+  border-radius: 10px;
+  background-color: green;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & svg {
+    width: 50px;
+  }
+  ::placeholder {
+    color: black;
+  }
+`;
+export const AvatarInput = styled.input`
+  display: none;
+`;

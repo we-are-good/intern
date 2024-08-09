@@ -15,7 +15,7 @@ export type UserType = {
   accessToken?: string;
   userId: string;
   success: boolean;
-  avatar: string;
+  avatar: File;
   nickname: string;
 };
 

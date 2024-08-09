@@ -6,6 +6,5 @@ export const useUserQuery = (accessToken: string) => {
   return useQuery({
     queryKey: [USER],
     queryFn: () => fetchUser(accessToken),
-    enabled: !!accessToken,
   });
 };

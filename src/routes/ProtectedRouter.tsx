@@ -1,19 +1,20 @@
 import { Navigate, Outlet } from "react-router-dom";
+import LoadingScreen from "../components/LoadingScreen";
 import { useUserQuery } from "../query/useQueries/useUserQueries";
 import { getCookie } from "../utils/Cookies";
-import LoadingScreen from "../components/LoadingScreen";
 
 const ProtectedRouter = () => {
   const token: string = getCookie("accessToken");
-  const { data, isLoading } = useUserQuery(token);
+  const { isError, isLoading } = useUserQuery(token);
 
   if (isLoading) {
     return <LoadingScreen />;
   }
 
-  if (data?.accessToken) {
+  if (!token || isError) {
     return <Navigate to="/login" />;
   }
+
   return <Outlet />;
 };
 

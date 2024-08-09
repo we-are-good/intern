@@ -29,6 +29,7 @@ export const loginUser = async (
     if (error instanceof AxiosError) {
       const errorMessage: string = error.response?.data.message;
       console.error(errorMessage);
+      deleteCookie("accessToken");
     }
   }
 };
@@ -63,7 +64,7 @@ export const fetchUser = async (
       const errorMessage: string = error.response?.data.message;
       alert(`유저확인오류 ${errorMessage}`);
     }
-    deleteCookie("accessToken");
+    return undefined;
   }
 };
 
@@ -81,7 +82,7 @@ export const updateUser = async ({
       },
       {
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
           Authorization: `bearer ${accessToken}`,
         },
       }
@@ -96,6 +97,6 @@ export const updateUser = async ({
 };
 
 api.interceptors.response.use(function intercept(error) {
-  console.log("오류가 발생했습니다!");
+  ("오류가 발생했습니다!");
   return error;
 });

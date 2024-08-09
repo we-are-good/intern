@@ -1,14 +1,13 @@
 import { create } from "zustand";
-import { tokenType } from "../types/tokenTypes";
 
 interface Token {
-  token: tokenType | null;
-  addToken: (by: tokenType) => void;
+  token: string;
+  addToken: (by: string) => void;
   deleteToken: () => void;
 }
 
-export const useAuthStore = create<Token>()((set) => ({
-  token: null,
+export const useTokenStore = create<Token>()((set) => ({
+  token: "",
   addToken: (by) => set(() => ({ token: by })),
-  deleteToken: () => set(() => ({ token: null })),
+  deleteToken: () => set(() => ({ token: "" })),
 }));

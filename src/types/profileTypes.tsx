@@ -1,4 +1,4 @@
 export type ProfileType = {
-  newFile: string | undefined;
+  newFile: File | null;
   newNickname: string | undefined;
 };

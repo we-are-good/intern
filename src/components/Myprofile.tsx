@@ -1,26 +1,31 @@
 import { useState } from "react";
 import { useUserUpdateMutation } from "../query/useMutation/useUserMutation";
 import { useUserQuery } from "../query/useQueries/useUserQueries";
-import { MypageWrapper, ProfileChangeButton } from "../styles/mypageStyles";
+import {
+  AvatarImg,
+  AvatarInput,
+  MypageWrapper,
+  ProfileChangeButton,
+} from "../styles/mypageStyles";
 import { getCookie } from "../utils/Cookies";
+import { Navigate } from "react-router-dom";
 
 import type { UserType } from "../types/userTypes";
 const Myprofile = () => {
   const token: string = getCookie("accessToken");
-  const userInfo = useUserQuery(token) as UserType;
-  const { nickname, avatar } = userInfo;
+  const { data, isError } = useUserQuery(token);
+  const { nickname, avatar } = data as UserType;
 
   const { mutate: userUpdateMutation } = useUserUpdateMutation();
 
   const [newNickname, setNewNickname] = useState(nickname);
-  const [newFile, setNewFile] = useState("");
+  const [newFile, setNewFile] = useState<File>(avatar);
   const [isChange, setIsChange] = useState(false);
 
   const profileImgChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
     if (files && files.length === 1) {
-      const newAddedFile = URL.createObjectURL(files[0]);
-      setNewFile(newAddedFile);
+      setNewFile(files[0]);
     }
   };
 
@@ -29,6 +34,9 @@ const Myprofile = () => {
   };
 
   const userProfileChangeHandler = () => {
+    if (!newNickname) {
+      return alert("닉네임은 필수입니다.");
+    }
     try {
       userUpdateMutation({ newFile, newNickname });
       setIsChange(false);
@@ -36,6 +44,10 @@ const Myprofile = () => {
       console.error(Error);
     }
   };
+
+  if (!token || isError) {
+    return <Navigate to="/login" />;
+  }
 
   return (
     <MypageWrapper>
@@ -46,14 +58,16 @@ const Myprofile = () => {
             value={newNickname}
             onChange={(e) => nicknameChange(e)}
           />
-          <label htmlFor="file">
-            <input
-              id="file"
+          <AvatarImg htmlFor="avatar">
+            <img src={`${newFile}`} alt="유저 사진" />
+            <AvatarInput
+              placeholder="이미지"
+              id="avatar"
               type="file"
               accept="image/*"
               onChange={(e) => profileImgChange(e)}
             />
-          </label>
+          </AvatarImg>
           <ProfileChangeButton type="button" onClick={userProfileChangeHandler}>
             확인
           </ProfileChangeButton>
@@ -61,7 +75,9 @@ const Myprofile = () => {
       ) : (
         <>
           <p>{nickname}</p>
-          <img src={avatar} alt="유저 사진" />
+          <AvatarImg htmlFor="avatar">
+            <img src={`${avatar}`} alt="유저 사진" />
+          </AvatarImg>
           <ProfileChangeButton type="button" onClick={() => setIsChange(true)}>
             프로필 변경
           </ProfileChangeButton>

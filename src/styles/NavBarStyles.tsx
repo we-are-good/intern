@@ -24,6 +24,13 @@ export const MenuWrapper = styled.section`
   height: 200px;
   background-color: rgba(133, 184, 248, 0.9);
   border-radius: 20px;
+  & > a {
+    text-decoration: none;
+    color: black;
+  }
+  & > div {
+    cursor: pointer;
+  }
 `;
 
 export const ContentsWrapper = styled.section`
