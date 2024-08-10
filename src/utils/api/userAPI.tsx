@@ -1,12 +1,12 @@
 import axios, { AxiosError } from "axios";
+import { ProfileType } from "../../types/profileTypes";
+import { deleteCookie, getCookie } from "../../utils/Cookies";
 
 import type {
   LoginUserType,
   NewUserType,
   UserType,
 } from "../../types/userTypes";
-import { deleteCookie, getCookie } from "../../utils/Cookies";
-import { ProfileType } from "../../types/profileTypes";
 
 const api = axios.create({
   baseURL: "https://moneyfulpublicpolicy.co.kr",
