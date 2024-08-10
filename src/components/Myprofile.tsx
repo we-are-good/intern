@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
 import { useUserUpdateMutation } from "../query/useMutation/useUserMutation";
 import { useUserQuery } from "../query/useQueries/useUserQueries";
 import {
@@ -8,8 +9,6 @@ import {
   ProfileChangeButton,
 } from "../styles/mypageStyles";
 import { getCookie } from "../utils/Cookies";
-import { Navigate } from "react-router-dom";
-import { useTokenStore } from "../store/tokenStore";
 
 import type { UserType } from "../types/userTypes";
 const Myprofile = () => {
