@@ -41,7 +41,7 @@ const Myprofile = () => {
       userUpdateMutation({ newFile, newNickname });
       setIsChange(false);
     } catch (error) {
-      console.error(Error);
+      console.error(error);
     }
   };
 
