@@ -12,7 +12,6 @@ import { getCookie } from "../utils/Cookies";
 
 import type { UserType } from "../types/userTypes";
 const Myprofile = () => {
-  // const { token } = useTokenStore();
   const token: string = getCookie("accessToken");
   const { data, isError } = useUserQuery(token);
   const { nickname, avatar } = data as UserType;
