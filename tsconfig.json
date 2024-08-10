@@ -11,7 +11,7 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "jsx": "react-jsx",
-    "types": ["jset", "profileTypes", "userTypes"],
+    "types": ["jset", "mocha", "profileTypes", "userTypes"],
     "moduleResolution": "node"
   }
 }

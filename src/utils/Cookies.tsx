@@ -7,7 +7,11 @@ export const getCookie = (name: string) => {
 };
 
 export const setCookie = (name: string, value: string) => {
-  return cookies.set(name, value, { httpOnly: true, path: "/" });
+  return cookies.set(name, value, {
+    httpOnly: undefined,
+    secure: true,
+    path: "/",
+  });
 };
 
 export const deleteCookie = (name: string) => {
