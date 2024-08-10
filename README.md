@@ -3,7 +3,7 @@
 ## 💻 프로젝트 소개
 
 인턴을 위한 과제용 프로젝트입니다.
-[페이지로 이동](intern-git-main-hyejins-projects-db435801.vercel.app)
+[페이지로 이동](intern-sage.vercel.app)
 
 ### 개발 환경 및 도구
 
