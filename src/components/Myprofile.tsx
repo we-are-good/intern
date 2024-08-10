@@ -56,7 +56,9 @@ const Myprofile = () => {
           <input
             type="text"
             value={newNickname}
-            onChange={(e) => nicknameChange(e)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              nicknameChange(e)
+            }
           />
           <AvatarImg htmlFor="avatar">
             <img src={`${newFile}`} alt="유저 사진" />
@@ -65,7 +67,9 @@ const Myprofile = () => {
               id="avatar"
               type="file"
               accept="image/*"
-              onChange={(e) => profileImgChange(e)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                profileImgChange(e)
+              }
             />
           </AvatarImg>
           <ProfileChangeButton type="button" onClick={userProfileChangeHandler}>

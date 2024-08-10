@@ -39,7 +39,9 @@ const LoginForm = () => {
     }
   };
   return (
-    <UserInputs onSubmit={(e) => loginHandeler(e)}>
+    <UserInputs
+      onSubmit={(e: React.FormEvent<HTMLFormElement>) => loginHandeler(e)}
+    >
       <input
         data-testid="userId"
         type="text"
