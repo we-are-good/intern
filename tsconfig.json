@@ -12,6 +12,7 @@
     "esModuleInterop": true,
     "jsx": "react-jsx",
     "types": ["jset", "profileTypes", "userTypes"],
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "sourceRoot": "/"
   }
 }

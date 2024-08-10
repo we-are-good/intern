@@ -5,20 +5,19 @@ import { CookiesProvider } from "react-cookie";
 import { RouterProvider } from "react-router-dom";
 import { queryClient, router } from "./routes/Routes";
 import GlobalStyle from "./styles/globalStyles";
+import "./instrument";
 
 function App() {
   return (
-    <>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-        <CookiesProvider>
-          <ErrorBoundary fallback={<p>something went wrong</p>}>
-            <GlobalStyle />
-            <ReactQueryDevtools initialIsOpen={true} />
-          </ErrorBoundary>
-        </CookiesProvider>
-      </QueryClientProvider>
-    </>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      <CookiesProvider>
+        <ErrorBoundary fallback={<p>something went wrong</p>}>
+          <GlobalStyle />
+          <ReactQueryDevtools initialIsOpen={true} />
+        </ErrorBoundary>
+      </CookiesProvider>
+    </QueryClientProvider>
   );
 }
 
