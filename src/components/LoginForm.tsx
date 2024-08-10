@@ -51,7 +51,7 @@ const LoginForm = () => {
       />
       <input
         data-testid="userPassword"
-        type="text"
+        type="password"
         placeholder="비밀번호"
         value={password}
         onChange={(e) => setPassword(e.target.value)}

@@ -44,7 +44,7 @@ const JoininForm = () => {
         onChange={(e) => setId(e.target.value)}
       />
       <input
-        type="text"
+        type="password"
         placeholder="비밀번호"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
