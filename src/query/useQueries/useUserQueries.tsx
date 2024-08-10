@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchUser } from "../queryFunctions/userQueryFns";
 import { USER } from "../queryKeys/userQueryKeys";
+import { fetchUser } from "../../utils/api/userAPI";
 
 export const useUserQuery = (accessToken: string) => {
   return useQuery({

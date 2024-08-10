@@ -34,7 +34,7 @@ export const loginUser = async (
   }
 };
 
-export const addUser = async (newUser: NewUserType) => {
+export const addUser = async (newUser: NewUserType): Promise<void> => {
   try {
     await axios.post(`/api/register`, newUser, {
       withCredentials: true,

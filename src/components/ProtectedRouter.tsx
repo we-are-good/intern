@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom";
-import LoadingScreen from "../components/LoadingScreen";
+import LoadingScreen from "./LoadingScreen";
 import { useUserQuery } from "../query/useQueries/useUserQueries";
 import { getCookie } from "../utils/Cookies";
 
