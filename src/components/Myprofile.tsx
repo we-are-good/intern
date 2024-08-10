@@ -9,9 +9,11 @@ import {
 } from "../styles/mypageStyles";
 import { getCookie } from "../utils/Cookies";
 import { Navigate } from "react-router-dom";
+import { useTokenStore } from "../store/tokenStore";
 
 import type { UserType } from "../types/userTypes";
 const Myprofile = () => {
+  // const { token } = useTokenStore();
   const token: string = getCookie("accessToken");
   const { data, isError } = useUserQuery(token);
   const { nickname, avatar } = data as UserType;
