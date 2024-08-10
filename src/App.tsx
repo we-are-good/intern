@@ -5,7 +5,6 @@ import { CookiesProvider } from "react-cookie";
 import { RouterProvider } from "react-router-dom";
 import { queryClient, router } from "./routes/Routes";
 import GlobalStyle from "./styles/globalStyles";
-import "./instrument";
 
 function App() {
   return (
