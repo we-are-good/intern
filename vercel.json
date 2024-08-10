@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/api",
-      "destination": "https://moneyfulpublicpolicy.co.kr"
+      "source": "/api/:method",
+      "destination": "https://moneyfulpublicpolicy.co.kr/:method"
     }
   ]
 }

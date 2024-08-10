@@ -20,7 +20,7 @@ export const loginUser = async (
   user: LoginUserType
 ): Promise<UserType | undefined> => {
   try {
-    const response = await axios.post(`${api}/login`, user, {
+    const response = await axios.post(`/api/login`, user, {
       withCredentials: true,
     });
     const data = response.data;
