@@ -34,7 +34,9 @@ const JoininForm = () => {
     }
   };
   return (
-    <UserInputs onSubmit={(e) => joininHandeler(e)}>
+    <UserInputs
+      onSubmit={(e: React.FormEvent<HTMLFormElement>) => joininHandeler(e)}
+    >
       <input
         type="text"
         placeholder="아이디"

@@ -4,7 +4,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { CookiesProvider } from "react-cookie";
 import { RouterProvider } from "react-router-dom";
 import { queryClient, router } from "./routes/Routes";
-import GlobalStyle from "./styles/globalStyles";
+import GlobalStyle from "./styles/GlobalStyles";
 
 function App() {
   return (

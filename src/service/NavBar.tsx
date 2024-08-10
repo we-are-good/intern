@@ -1,10 +1,11 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
+
+import { deleteCookie } from "../utils/Cookies";
 import {
   ContentsWrapper,
   MenuWrapper,
   NavBarWrapper,
 } from "../styles/navBarStyles";
-import { deleteCookie } from "../utils/Cookies";
 
 const NavBar = () => {
   const navigate = useNavigate();
