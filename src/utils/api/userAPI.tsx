@@ -52,7 +52,7 @@ export const fetchUser = async (
   accessToken: string
 ): Promise<UserType | undefined> => {
   try {
-    const data = await axios.get(`/api/user`, {
+    const data = await api.get(`/user`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `bearer ${accessToken}`,
